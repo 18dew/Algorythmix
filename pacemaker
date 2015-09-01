@@ -1,0 +1,73 @@
+contract Pacemaker{
+    address manufacturer;
+    address doctor;
+    address user;
+    address tracker;
+    uint life;
+    uint start_time;
+    uint state;
+    // 1 - with manufacturer
+    // 2 - safe
+    // 3 - unsafe (life time expired)
+    // 4 - fail (failed before life time)
+
+    //Contract initialize
+    function Pacemaker(){
+        manufacturer = msg.sender;
+        state = 1;
+    }
+
+    function setSpec(uint life){
+        if(msg.sender == manufacturer){
+            life = life;
+        }
+    }
+
+    function toDoc(address doctor){
+        if(state == 1 && life>0)
+            doctor = doctor;
+    }
+
+    function initialize(address patient){
+        if(msg.sender==doctor){
+            user = patient;
+            start_time = now;
+            state = 3;
+        }
+    }
+
+    function setTracker(address tracker)
+    {
+        if(msg.sender == user)
+            tracker = tracker;
+    }
+
+    function check() returns(string){
+        if(msg.sender == doctor || msg.sender == user || msg.sender == manufacturer || msg.sender == tracker){
+            if(state == 2){
+                if(now - start_time >= life){
+                    state = 3;
+                    return "Expired !! Help !!!";
+                }
+                else
+                    state = 2;
+                    return "Safe :)";
+            }
+            if(state == 3){
+                return "Expired !! Help !!!";
+            }
+            if(state == 4){
+                return "OMG ! HEART ATTACK !!!";
+            }
+        }
+    }
+
+    function fail(){
+        if(msg.sender == user){
+            if(state == 2 && now - start_time >= life)
+                state = 3;
+            if(state == 2 && now - start_time < life)
+                state = 4;
+        }
+    }
+}
