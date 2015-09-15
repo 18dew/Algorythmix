@@ -1,0 +1,5 @@
+Working File
+
+admin.startRPC("127.0.0.1",8545,"*","web3,db,net,eth")
+admin.setSolc("/usr/local/bin/solc")
+personal.unlockAccount("Address","Password")

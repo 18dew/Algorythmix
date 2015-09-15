@@ -1,0 +1,43 @@
+{
+  "test": {
+    "code": "0x6060604052608b8060116000396000f30060606040526000357c01000000000000000000000000000000000000000000000000000000009004806357de26a4146041578063b191cf7814606057603f565b005b604a600450607f565b6040518082815260200191505060405180910390f35b606f6004803590602001506071565b005b806000600050819055505b50565b60008090506088565b9056",
+    "info": {
+      "source": "contract test {\n\t\tuint reading;\n\t\tfunction rite(uint a)  {\n\t\t\treading = a;\n\t\t}\n\t\tfunction read() constant returns(uint reading) {\n\t\treturn reading;\n \t}\n }",
+      "language": "Solidity",
+      "languageVersion": "0",
+      "compilerVersion": "0.9.27",
+      "abiDefinition": [
+        {
+          "constant": true,
+          "inputs": [],
+          "name": "read",
+          "outputs": [
+            {
+              "name": "reading",
+              "type": "uint256"
+            }
+          ],
+          "type": "function"
+        },
+        {
+          "constant": false,
+          "inputs": [
+            {
+              "name": "a",
+              "type": "uint256"
+            }
+          ],
+          "name": "rite",
+          "outputs": [],
+          "type": "function"
+        }
+      ],
+      "userDoc": {
+        "methods": {}
+      },
+      "developerDoc": {
+        "methods": {}
+      }
+    }
+  }
+}
